@@ -1,53 +1,39 @@
 <template>
-  <div style="width: 50%; margin: auto">
-    <div class="grid">
-      <div class="grid-item1">
-        <div class="post">
-          <div class="header">
-            <div class="avatar">
-              <a href="#">
-                <img :src="avatars_link" />
-              </a>
-            </div>
-            <div class="topname">
-              <a href="#">
-                <h4>Имя пользователя</h4>
-              </a>
-              <div class="location">
-                <a href="#">Место</a>
-              </div>
-            </div>
-          </div>
-          <img :src="image_link" />
-          <div class="icon">
-            <a href="#">
-              <img :src="icon_link1" />
-            </a>
-            <a href="#">
-              <img :src="icon_link2" />
-            </a>
-            <a href="#">
-              <img :src="icon_link3" />
-            </a>
-          </div>
-
-          <Comment
-            v-for="(comment, index) in comments_array"
-            v-bind:key="index"
-            v-bind:text="comment"
-          />
+  <div class="post">
+    <div class="header">
+      <div class="avatar">
+        <a href="#">
+          <img :src="avatars_link" />
+        </a>
+      </div>
+      <div class="topname">
+        <a href="#">
+          <h4>Имя пользователя</h4>
+        </a>
+        <div class="location">
+          <a href="#">Место</a>
         </div>
       </div>
-      <div class="grid-item2">
-        <Stories></Stories>
-      </div>
     </div>
+    <img :src="image_link" />
+    <div class="icon">
+      <a href="#">
+        <img :src="icon_link1" />
+      </a>
+      <a href="#">
+        <img :src="icon_link2" />
+      </a>
+      <a href="#">
+        <img :src="icon_link3" />
+      </a>
+    </div>
+
+    <Comment v-for="(comment, index) in comments_array" v-bind:key="index" v-bind:text="comment" />
   </div>
 </template>
 
 <script>
 import Comment from "./Comment.vue";
-import Stories from "./Stories.vue";
 
 export default {
   data: function() {
@@ -62,8 +48,7 @@ export default {
     "comments_array"
   ],
   components: {
-    Comment,
-    Stories
+    Comment
   }
 };
 </script>
@@ -72,24 +57,6 @@ export default {
 * {
   padding: 0;
   margin: 0;
-}
-.grid {
-  display: grid;
-  grid-template-areas: "a1 a2";
-  grid-template-columns: 2fr 1fr;
-  justify-content: center;
-  grid-gap: 2em;
-  background: rgb(247, 244, 244);
-}
-
-.grid-item1 {
-  grid-area: a1;
-}
-.grid-item2 {
-  align-self: start;
-  grid-area: a2;
-  position: sticky;
-  top: 80px;
 }
 
 .post {

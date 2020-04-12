@@ -1,22 +1,29 @@
 <template>
   <div id="app">
     <Header />
-    <Post
-      v-for="(item, index) in posts"
-      :key="index"
-      :image_link="item.image_url"
-      :avatars_link="item.avatars_url"
-      :icon_link1="item.icons_url1"
-      :icon_link2="item.icons_url2"
-      :icon_link3="item.icons_url3"
-      :comments_array="item.comments"
-    />
+    <div class="grid">
+      <div class="grid-item1">
+        <Post
+          v-for="(item, index) in posts"
+          :key="index"
+          :image_link="item.image_url"
+          :avatars_link="item.avatars_url"
+          :icon_link1="item.icons_url1"
+          :icon_link2="item.icons_url2"
+          :icon_link3="item.icons_url3"
+          :comments_array="item.comments"
+        />
+      </div>
+
+      <Stories class="grid-item2"></Stories>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import Post from "./components/Post.vue";
+import Stories from "./components/Stories.vue";
 
 export default {
   name: "app",
@@ -56,9 +63,32 @@ export default {
   },
   components: {
     Header,
-    Post
+    Post,
+    Stories
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+.grid {
+  display: grid;
+  grid-template-areas: "a1 a2";
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  grid-gap: 2em;
+  background: rgb(247, 244, 244);
+  width: 50%;
+  margin: auto;
+  
+}
+
+.grid-item1 {
+  grid-area: a1;
+}
+.grid-item2 {
+  align-self: start;
+  grid-area: a2;
+  position: sticky;
+  top: 80px;
+}
+</style>
